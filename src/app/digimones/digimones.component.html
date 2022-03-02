@@ -1,1 +1,21 @@
-<p>digimones works!</p>
+<div class="row">
+    <div class="col-sm-3" *ngFor="let digimon of dig">
+        <div class="card" style="width: 18rem" *ngIf="digimon.level === level" [ngClass]="{
+        mega: digimon.level === 'Mega',
+        inTraining: digimon.level === 'In Training',
+        rookie: digimon.level === 'Rookie',
+        champion: digimon.level === 'Champion'
+       }">
+
+            <!-- <div [ngClass]="display: digimon.level === level"> -->
+            <img src="{{ digimon.img }}" class="card-img-top" alt="..." />
+            <div class="card-body">
+                <h5 class="card-title">{{ digimon.name }}</h5>
+                <p class="card-text">{{ digimon.level }}</p>
+                <a href="{{digimon.img}}" class="btn btn-primary">Go somewhere</a>
+
+                <!-- </div> -->
+            </div>
+        </div>
+    </div>
+</div>

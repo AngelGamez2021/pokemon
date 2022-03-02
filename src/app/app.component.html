@@ -1,15 +1,8 @@
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-3" *ngFor="let digimon of digimones">
-                <div class="card" style="width: 18rem;">
-                    <img src="{{digimon.img}}" class="card-img-top"  alt="...">
-          <div class="card-body">
-            <h5 class="card-title">{{digimon.name}}</h5>
-            <p class="card-text">{{digimon.level}}</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-          </div>
-        </div>
+<div class="container">
+    <app-buscador (search)="digimonFilter($event)" (tipo)="cambiarTipo($event)"></app-buscador>
 
-      </div>
-    </div>
-  </div>
+    <br /><br />
+    <br /><br />
+
+    <app-digimones [dig]="digimones" [level]="level"></app-digimones>
+</div>

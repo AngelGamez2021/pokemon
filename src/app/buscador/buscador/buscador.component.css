@@ -1,0 +1,62 @@
+/* buscador =========//////////////*/
+
+.buscar {
+    position: absolute;
+    padding: 5px;
+    margin: 20px;
+    display: flex;
+    /* manipular las posiciones  */
+    justify-content: space-between;
+    width: 100%;
+}
+
+.buscar input {
+    width: 0px;
+    height: 40px;
+    padding: 0 20px;
+    font-size: 18px;
+    color: black;
+    outline: none;
+    border: 1px solid silver;
+    border-radius: 30px;
+    transition: all 0.25s ease;
+}
+
+
+/* * // esto es de boton de buscar */
+
+*/ .btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #440080;
+    width: 55px;
+    height: 55px;
+    line-height: 55px;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.buscar:hover input {
+    width: 240px;
+}
+
+.buscar input:focus {
+    width: 240px;
+}
+
+.selec:hover {
+    width: 240px;
+}
+
+.button {
+    margin-right: 250px;
+}
+
+.button button {
+    margin: 5px;
+    border: solid;
+}

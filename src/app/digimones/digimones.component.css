@@ -1,0 +1,53 @@
+/* .container {
+    display: none;
+} */
+
+
+/* .display {
+    display: none;
+} */
+
+.mega {
+    color: rgb(255, 0, 0);
+}
+
+.inTraining {
+    color: rgb(56, 241, 0);
+}
+
+.rookie {
+    color: rgb(2, 164, 240);
+}
+
+.champion {
+    color: rgb(251, 255, 2);
+}
+
+.card {
+    width: 250px;
+    float: left;
+    /* ancho de 100% */
+    margin: 20px;
+    /* Margen de 20px */
+    border-radius: 6px;
+    /* un pequeño redondeado en cada esquina de la tarjeta  */
+    overflow: hidden;
+    /* Todo lo que queda por fuera no aparezca, que se salga del margen */
+    background: white;
+    /* Fondo blanco */
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
+    /* Sombra  */
+    cursor: default;
+    /* que no cambia el cursor en las palabras */
+    transition: all 400ms ease;
+    /* esta es la duracion del efecto y sea suave */
+    text-align: left;
+    /* centrar el texto */
+    padding: 5%;
+    /* el margen entre y el espacio */
+}
+
+.card:hover {
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
+    /* sombra un poco mas avanzada  */
+}

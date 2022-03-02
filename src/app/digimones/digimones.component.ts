@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 
 @Component({
@@ -8,5 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DigimonesComponent {
 
+  //espera la informacion que envia el padre, en este caso las card
+  @Input() dig: any [] = [];
+  @Input() level: string="";
  
 }

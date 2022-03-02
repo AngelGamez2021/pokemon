@@ -8,7 +8,7 @@
 // }
 // 4. en el services
 
-// import {Injectable, Injectable } from "@angular/core";
+// import { Injectable, Injectable, NgModule, Component } from '@angular/core';
 // import { Observable } from 'rxjs';
 
 // import {HttpClient} from '@angular/common/http'
@@ -17,9 +17,9 @@
 // export class DigimonesServices{
 //     private API_SERVER ="https://digimon-api.vercel.app/api/digimon"
 // }
-// pasamos el constructor 
+// pasamos el constructor
 // constructor(public http:HttpClient){}
-        
+
 //         public getDigimones():Observable<any>{
 //             return this.http.get(this.API_SERVER);
 //         }
@@ -27,38 +27,201 @@
 //     y en esta variable obtendremos con el metodo get esa informacion de la API
 
 
-// 5. vamos al ts ppal e importamose el sercies creado
-// 6. en la clase creamos una variable: 
-//     digimones: any;
+// 5. vamos al ts ppal e importamose el servicies creado
+// 6. en la clase creamos una variable:
+//     digimones: Digimones[] = [];
 
 //     constructor(public digimon: digimonesServices){}
 
 //     ngOnInit() {
 //         this.digimon.getDigimones().subscribe(
-//          (r) => { this.digimones = r; console.log(r) },
+//          (digiData) => { this.digimones = digiData;
+//                                                     },
 //          (e) => { console.error(e)}
 //       )}
 //      }
+
 // creamos una variable de tipo services
 // en el init llamaos a esta variable y le pasamos el metodo get. y nos suscribimos
-// luego creamos una variable r, y es igual a la creada arriba, de tipo any, la imprimimos
+// luego creamos una variable digiData, y es igual a la creada arriba, de tipo any
 // luego en otra pasamos una variable e y le pasamos un console.error
-// 7. en los modulos importamos el servicio, si no no encontrará nada 
+
+// 7. en los modulos importamos el servicio, si no no encontrará nada
 // este lo almacenamos primero en providers y que importe arriba el mismo services
 // 8. hacemos  lo mismo con el httpClienteModule, dentro de los modules e importamos
-// 9. luego vamos al html y ponemos un URL
+// 9. luego vamos al html y ponemos un ul
 
-// <ul **ngFor="let digimon of digimones">
+// <div class="container">
+//     <app-buscador></app-buscador>
 
-// <li> {{digimon.name}} </li>
+//     <br /><br />
+//     <br /><br />
 
-// </ul>
-
-// aca recorremos el array y con la nueva variable digimon, recorremos digimonses de tipo any creada en el componens
-// con esto nos deberia salir el nombre
+//     <app-digimones></app-digimones>
+// </div>
 
 
-// TERMINAR
-// PASAR LA CARD AL HIJO
-// CREAR EL FILTRO DEL HIJO
-// ESTILOS DEL HTML PPAL
+// despues de creados estos dos componentes los llamamos dentro del html ppal
+
+// 10. el digimones.ts lo cambiamos  a digimones.interface.ts
+
+// el archivo debe quedar asi:
+// export interface Digimones {
+//     name:string;
+//     img: string;
+//     level?:string;
+//     //con el ? volvemos opocional la informacion que vamos a mandar al momento de llamar la interface.
+// }
+
+// 11. en el app.components
+// digimones: ponemos el Digimones (interface) [] = []
+// digimones: Digimones[] = [];
+
+// 12. creamos una variable en el components del hijo :
+// @Input() dig: any [] = [];
+
+// esto me va a recibir la informacion del padre
+// pasamos parte del div del html papa al html hijo
+// y en ese espacio del html papa ponemos el app-digimones..
+
+// 13. dentro de:  <app-digimones [dig]="digimones"></app-digimones>
+
+// aca estamos pasando la variable dig creada en el components hijo y le asignamos los valores
+// de digimones que es toda la informacion que esta teninendo el padre en su compoents
+
+// 14. creamos en el components del buscador, el OutPut que nos va a emimir con el
+// @Output() search = new EventEmitter<{}>()
+
+// 15. creamos dentro del app ppal despues del constructor
+
+// //   digimonFilter(data: any) {
+
+
+//     this.digimones = this.copyDigimon.filter((digi) =>
+//     digi.name.toString()
+//     .toLowerCase()
+//     .includes(data.toLowerCase()))
+//   }
+
+
+// y en el html nos queda asi
+
+// <app-buscador (search)="digimonFilter($event)"></app-buscador>
+
+// 16. en el CSS de buscador ponemos todas los estilos del buscador
+
+
+// 17. modificamos el html y añadimos un container
+
+// <div class="container ">
+//     <div class="buscar">
+//         <!-- Va emitiendo al padre lo que se va escribiendo y llamamos a la funcion creada -->
+//         <input type="text" placeholder="Buscar" required [(ngModel)]="informacion" />
+//     </div>
+// </div>
+
+// tenemos un input que tendra la informacion en esa variable, antes en el module ppal,
+// importamos el FormsModule para que no mande error el NgModule
+
+// 18. pasamos el components del buscador y creamos   informacion =""; debajo del output
+
+// 19. despues del init
+
+//   buscador(data: any){
+//     this.search.emit({data, informacion: this.informacion})
+//     console.log(data, this.informacion); }
+// esto está encapsulando lo que vamos poniendo en la caja de texto del input
+
+//20. sin salir del buscador components. vamos a mandar el tipo al padre...
+// @Output() tipo = new EventEmitter<string>();
+// creamos una variable vacia
+
+// level = ''; antes del constructor
+
+// cambiarTipo (dato: string){
+//     this.tipo.emit(dato);
+//   }
+
+// 21.
+// volvemos al html buscador
+// y creamos un div con 4 botones que seran los estados que va a mostrar
+// <div class="button">
+//             <button class=" btn " (click)="cambiarTipo('In Training')">In Training</button>
+//             <button class=" btn " (click)="cambiarTipo('Rookie')"> Rookie</button>
+//             <button class=" btn " (click)="cambiarTipo('Champion')">Champion</button>
+//             <button class=" btn " (click)="cambiarTipo('Mega')">Mega</button>
+//         </div>
+
+
+
+// 22. creamos una copia de seguridad en el app Component
+// copyDigimon: Digimones [] = [];
+
+// this.digimon.getDigimones().subscribe(
+//     (digiData) => {
+//       this.digimones = digiData;
+
+//       this.copyDigimon = digiData;
+//     },
+//     (e) => {
+//       console.error(e);
+//     }
+//   );
+//   lo ponemos en acá
+
+// 23. sin salir del components creamos un metodo despues del filter
+
+//  cambiarTipo(data:string){
+//     this.level=data;
+//   }
+
+
+// dentro del digimones coponents creamos otro input
+// @Input() level: string="";
+
+// 24. en el el appcomponent creamos una variable 
+// level: string="";
+
+// y el html ppal debe quedar asi:
+
+// <div class="container">
+//     <app-buscador (search)="digimonFilter($event)" (tipo)="cambiarTipo($event)"></app-buscador>
+
+//     <br /><br />
+//     <br /><br />
+
+//     <app-digimones [dig]="digimones" [level]="level"></app-digimones>
+// </div>
+
+// 25. en el buscador debemos tener el otro input
+//  @Output() tipo = new EventEmitter<string>();
+
+
+// el html del digimones.components debe quedar asi 
+
+// <div class="row">
+//     <div class="col-sm-3" *ngFor="let digimon of dig">
+//         <div class="card" style="width: 18rem" *ngIf="digimon.level === level" [ngClass]="{
+//         Mega: digimon.level === 'Mega',
+//         InTraining: digimon.level === 'In Training',
+//         Rookie: digimon.level === 'Rookie',
+//         Champion: digimon.level === 'Champion' }">
+//             <img src="{{ digimon.img }}" class="card-img-top" alt="..." />
+//             <div class="card-body">
+//                 <h5 class="card-title">{{ digimon.name }}</h5>
+//                 <p class="card-text">{{ digimon.level }}</p>
+//                 <a href="{{digimon.img}}" class="btn btn-primary">Go somewhere</a>
+//             </div>
+//         </div>
+//     </div>
+// </div>
+
+
+// AGREGAR CARRUSEL EN OTRO COMPONENTE
+// LISTADO INICIAL AL CARGAR 
+// BORRAR CAJAS VACIAS
+// AGREGAR FOOTER Y HEADER
+// GO SOME evolucionar?
+
+
+

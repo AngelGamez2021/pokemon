@@ -1,0 +1,16 @@
+<div class="container ">
+    <div class="buscar">
+        <!-- Va emitiendo al padre lo que se va escribiendo y llamamos a la funcion creada -->
+        <input type="text" placeholder="Buscar" required (ngModelChange)="buscador($event)" [(ngModel)]="informacion" />
+        <!-- va guardando lo que se vaya escribiendo en la caja de texto -->
+
+        <div class="button">
+            <button class=" btn " (click)="cambiarTipo('In Training')">In Training</button>
+            <button class=" btn " (click)="cambiarTipo('Rookie')"> Rookie</button>
+            <button class=" btn " (click)="cambiarTipo('Champion')">Champion</button>
+            <button class=" btn " (click)="cambiarTipo('Mega')">Mega</button>
+
+        </div>
+
+    </div>
+</div>
