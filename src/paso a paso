@@ -1,0 +1,64 @@
+// 1. creamos otro componente
+// 2. y dentro de este creamos dos archivos, digimones.ts y digimones.services.ts
+// 3. hacemos una clase con los datos de la api en vacio
+// export class Digimones {
+//     public name:string='';
+//     public img: string ='';
+//     public level:string ='';
+// }
+// 4. en el services
+
+// import {Injectable, Injectable } from "@angular/core";
+// import { Observable } from 'rxjs';
+
+// import {HttpClient} from '@angular/common/http'
+
+// @Injectable
+// export class DigimonesServices{
+//     private API_SERVER ="https://digimon-api.vercel.app/api/digimon"
+// }
+// pasamos el constructor 
+// constructor(public http:HttpClient){}
+        
+//         public getDigimones():Observable<any>{
+//             return this.http.get(this.API_SERVER);
+//         }
+//     }
+//     y en esta variable obtendremos con el metodo get esa informacion de la API
+
+
+// 5. vamos al ts ppal e importamose el sercies creado
+// 6. en la clase creamos una variable: 
+//     digimones: any;
+
+//     constructor(public digimon: digimonesServices){}
+
+//     ngOnInit() {
+//         this.digimon.getDigimones().subscribe(
+//          (r) => { this.digimones = r; console.log(r) },
+//          (e) => { console.error(e)}
+//       )}
+//      }
+// creamos una variable de tipo services
+// en el init llamaos a esta variable y le pasamos el metodo get. y nos suscribimos
+// luego creamos una variable r, y es igual a la creada arriba, de tipo any, la imprimimos
+// luego en otra pasamos una variable e y le pasamos un console.error
+// 7. en los modulos importamos el servicio, si no no encontrará nada 
+// este lo almacenamos primero en providers y que importe arriba el mismo services
+// 8. hacemos  lo mismo con el httpClienteModule, dentro de los modules e importamos
+// 9. luego vamos al html y ponemos un URL
+
+// <ul **ngFor="let digimon of digimones">
+
+// <li> {{digimon.name}} </li>
+
+// </ul>
+
+// aca recorremos el array y con la nueva variable digimon, recorremos digimonses de tipo any creada en el componens
+// con esto nos deberia salir el nombre
+
+
+// TERMINAR
+// PASAR LA CARD AL HIJO
+// CREAR EL FILTRO DEL HIJO
+// ESTILOS DEL HTML PPAL
